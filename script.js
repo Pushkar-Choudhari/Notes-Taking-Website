@@ -177,7 +177,6 @@ search.addEventListener("input", function () {
         }
         else {
             e.style.display = "none";
-            flag = false;
         }
         if (flag) {
             for (let i = 3; i < e.childElementCount - 1; i++) {
