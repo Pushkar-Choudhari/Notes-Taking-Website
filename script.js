@@ -175,19 +175,17 @@ search.addEventListener("input", function () {
             e.style.display = "block";
             flag = false;
         }
-        else {
-            e.style.display = "none";
-        }
-        if (flag) {
+        else if (flag) {
             for (let i = 3; i < e.childElementCount - 1; i++) {
                 notesText = e.children[i].innerText.toLowerCase();
                 if (notesText.includes(searchText)) {
                     e.style.display = "block";
-                }
-                else {
-                    e.style.display = "none";
+                    flag = false;
                 }
             }
+        }
+        else {
+            e.style.display = "none";
         }
     });
 });
