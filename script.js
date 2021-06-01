@@ -182,7 +182,6 @@ search.addEventListener("input", function () {
                     e.style.display = "block";
                     flag = false;
                 }
-                console.log(flag);
             }
         }
         if(flag){
