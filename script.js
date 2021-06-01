@@ -182,9 +182,10 @@ search.addEventListener("input", function () {
                     e.style.display = "block";
                     flag = false;
                 }
+                console.log(flag);
             }
         }
-        else {
+        if(flag){
             e.style.display = "none";
         }
     });
