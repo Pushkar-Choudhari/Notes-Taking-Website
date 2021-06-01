@@ -169,20 +169,25 @@ search.addEventListener("input", function () {
     let searchText = search.value.toLowerCase();
     let notes = document.getElementsByClassName("notes-box");
     Array.from(notes).forEach(function (e) {
+        let flag = true;
         titleText = e.children[1].innerText.toLowerCase();
         if (titleText.includes(searchText)) {
             e.style.display = "block";
+            flag = false;
         }
         else {
             e.style.display = "none";
+            flag = false;
         }
-        for(let i=3; i<e.childElementCount-1; i++){
-            notesText = e.children[i].innerText.toLowerCase();
-            if (notesText.includes(searchText)) {
-                e.style.display = "block";
-            }
-            else {
-                e.style.display = "none";
+        if (flag) {
+            for (let i = 3; i < e.childElementCount - 1; i++) {
+                notesText = e.children[i].innerText.toLowerCase();
+                if (notesText.includes(searchText)) {
+                    e.style.display = "block";
+                }
+                else {
+                    e.style.display = "none";
+                }
             }
         }
     });
@@ -190,9 +195,9 @@ search.addEventListener("input", function () {
 
 function sideBar() {
     let sideBar = document.getElementById("side-menu");
-    sideBar.classList.toggle( "open");
+    sideBar.classList.toggle("open");
 }
 
-function changeBackground(src){
+function changeBackground(src) {
     document.body.style.backgroundImage = `url(${src})`
 }
