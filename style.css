@@ -5,19 +5,21 @@
     box-sizing: 0;
     font-family: 'Open Sans', sans-serif;
 }
+body{
+    background-image: url(images/forest-5375005_1920.jpg);
+}
 /*Navigation Bar*/
 .nav-bar{
     width: 100%;
     height: 33px;
-    background-color: rgb(111, 184, 150);
-    display: flex;
+    background-color:gray;
+    position: relative;
     align-items: center;
-    flex-direction: row-reverse;
+    opacity: 0.5;
 }
-html{
-    background-image: url("forest-5375005_1920.jpg");
+.nav-element{
+    position: absolute;
 }
-
 /*Notes Container*/
 .notes-container{
     display: flex;
@@ -40,7 +42,6 @@ html{
     height: fit-content;
 }
 .notes-title{
-    background-color: transparent;
     display: flex;
     width: 100%;
     min-height: 30%;
@@ -53,7 +54,6 @@ html{
     margin-top: -5px;
 }
 .notes-main{
-    background-color: transparent;
     display: flex;
     width: 100%;
     min-height: 30%;
@@ -106,8 +106,45 @@ html{
     color: gray;
 }
 
+/*Side Menu Bar*/
+.side-menu{
+    width: 300px;
+    height: 95.5%;
+    background-color: rgb(54, 54, 54);
+    position: fixed;
+    left: -325px;
+    top: 4.5%;
+    transition: all 0.5s;
+    border-right: rgb(31, 31, 31) solid;
+}
+.side-menu.open{
+    left: 0%;
+}
+.side-menu div{
+    color: white;
+    text-align: center;
+    margin: 10px;
+}   
+.side-bar-image{
+    height: 23%;
+    width: 90%;
+    margin: 12.5px;
+    border-radius: 25px;
+    object-fit: scale-down;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
 @media ( max-width: 580px) {
     .notes-container{
         justify-content: center;
+    }
+    html{
+        background-position: center;
+    }
+    .side-menu{
+        width: 100%;
+        left: -105%;
     }
 }

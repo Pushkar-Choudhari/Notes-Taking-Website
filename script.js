@@ -12,7 +12,7 @@ function editText(id, type) {
     textArea.addEventListener('blur', function () {
         let text = textArea.value;
         parentOfText.innerHTML = `<p class="notes-text">${text}</p>
-        <a id=${id} class="notes-edit" name=${type} onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>`;
+        <a id=${id} class="notes-edit" name=${type} onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>`;
         updateLocalStorage(id, type, text);
     });
 }
@@ -24,17 +24,17 @@ function addNote() {
     let addnoteBox = document.getElementById("add-notes-box");
     let newNote = document.createElement("div");
     newNote.setAttribute("class", "notes-box");
-    newNote.innerHTML = `<img id="${"close" + noOfChildElems}" onclick="deleteNode(this.id)" src="x-circle.svg" class="delete">
+    newNote.innerHTML = `<img id="${"close" + noOfChildElems}" onclick="deleteNode(this.id)" src="icons/x-circle.svg" class="delete">
                         <div class="notes-title">
                         <p class="notes-text">TITLE TEXT</p>
-                        <a id="${"title" + noOfChildElems}" name="title" class="notes-edit" onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>
+                        <a id="${"title" + noOfChildElems}" name="title" class="notes-edit" onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>
                     </div>
                     <hr class="notes-hr">
                     <div class="notes-main">
                         <p class="notes-text">Notes Text</p>
-                        <a id="${"main" + noOfChildElems}" name="main" class="notes-edit" onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>
+                        <a id="${"main" + noOfChildElems}" name="main" class="notes-edit" onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>
                     </div>
-                    <img id=${"addBtn" + noOfChildElems} src="plus.svg" onclick="addTextArea(this.id)" style="background-color: khaki; margin: 0 117px; cursor: pointer;"></img>`;
+                    <img id=${"addBtn" + noOfChildElems} src="icons/plus.svg" onclick="addTextArea(this.id)" style="background-color: khaki; margin: 0 117px; cursor: pointer;"></img>`;
     mainContainer.insertBefore(newNote, addnoteBox);
     addToLocalStorage();
 }
@@ -46,12 +46,12 @@ function addTextArea(id) {
     let textArea = document.createElement("div");
     textArea.setAttribute("class", "notes-main");
     textArea.innerHTML = `<p class="notes-text">Notes Text</p>
-    <a id=${id + "&" + (parent.childElementCount-4)} class="notes-edit" name="main&" onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>`;
+    <a id=${id + "&" + (parent.childElementCount - 4)} class="notes-edit" name="main&" onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>`;
     parent.insertBefore(textArea, addBtn);
     let idValue = Number(id.substring(6));
     let mainStorage = JSON.parse(localStorage.getItem("main"));
-    mainStorage[idValue-1].push("Notes Text");
-    localStorage.setItem("main",JSON.stringify(mainStorage));
+    mainStorage[idValue - 1].push("Notes Text");
+    localStorage.setItem("main", JSON.stringify(mainStorage));
 }
 
 //adds the ability to delete notes
@@ -98,17 +98,17 @@ function addToLocalStorage() {
 function updateLocalStorage(id, type, text) {
     //console.log(id);
     let storage;
-    if(type=="main&"){
+    if (type == "main&") {
         storage = JSON.parse(localStorage.getItem("main"));
         let indexOf = id.indexOf("&");
-        let idValue  = id.substring(6,indexOf);
+        let idValue = id.substring(6, indexOf);
         idValue = Number(idValue);
         //console.log(idValue);
-        let index = Number(id.substring(indexOf+1));
-        storage[idValue-1][index] = text;
+        let index = Number(id.substring(indexOf + 1));
+        storage[idValue - 1][index] = text;
         localStorage.setItem("main", JSON.stringify(storage));
     }
-    else{
+    else {
         storage = JSON.parse(localStorage.getItem(type));
         let idValue = id.substring(type.length);
         idValue = Number(idValue);
@@ -137,26 +137,26 @@ function showNotes() {
     for (let i = 0; i < length; i++) {
         let newNote = document.createElement("div");
         newNote.setAttribute("class", "notes-box");
-        newNote.innerHTML = `<img id="${"close" + (i + 1)}" onclick="deleteNode(this.id)" src="x-circle.svg" class="delete">
+        newNote.innerHTML = `<img id="${"close" + (i + 1)}" onclick="deleteNode(this.id)" src="icons/x-circle.svg" class="delete">
                         <div class="notes-title">
                         <p class="notes-text">${titleStorage[i][0]}</p>
-                        <a id="${"title" + (i + 1)}" name="title" class="notes-edit" onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>
+                        <a id="${"title" + (i + 1)}" name="title" class="notes-edit" onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>
                     </div>
                     <hr class="notes-hr">
                     <div class="notes-main">
                         <p class="notes-text">${mainStorage[i][0]}</p>
-                        <a id="${"main" + (i + 1)}" name="main" class="notes-edit" onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>
+                        <a id="${"main" + (i + 1)}" name="main" class="notes-edit" onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>
                     </div>
-                    <img id=${"addBtn" + (i + 1)} src="plus.svg" onclick="addTextArea(this.id)" style="background-color: khaki; margin: 0 117px; cursor: pointer;"></img>`;
+                    <img id=${"addBtn" + (i + 1)} src="icons/plus.svg" onclick="addTextArea(this.id)" style="background-color: khaki; margin: 0 117px; cursor: pointer;"></img>`;
         mainContainer.insertBefore(newNote, addnoteBox);
-        let id="addBtn"+(i+1);
+        let id = "addBtn" + (i + 1);
         let addBtn = document.getElementById(id);
-        for(let j=1; j<mainStorage[i].length; j++){
+        for (let j = 1; j < mainStorage[i].length; j++) {
             let parent = addBtn.parentNode;
             let textArea = document.createElement("div");
             textArea.setAttribute("class", "notes-main");
             textArea.innerHTML = `<p class="notes-text">${mainStorage[i][j]}</p>
-                                    <a id=${id + "&" + (parent.childElementCount-4)} class="notes-edit" name="main&" onclick="editText(this.id,this.name)"><img src="edit-2.svg" class="notes-edit"></a>`;
+                                    <a id=${id + "&" + (parent.childElementCount - 4)} class="notes-edit" name="main&" onclick="editText(this.id,this.name)"><img src="icons/edit-2.svg" class="notes-edit"></a>`;
             parent.insertBefore(textArea, addBtn);
         }
     }
@@ -170,12 +170,29 @@ search.addEventListener("input", function () {
     let notes = document.getElementsByClassName("notes-box");
     Array.from(notes).forEach(function (e) {
         titleText = e.children[1].innerText.toLowerCase();
-        notesText = e.children[3].innerText.toLowerCase();
-        if (notesText.includes(searchText) || titleText.includes(searchText)) {
+        if (titleText.includes(searchText)) {
             e.style.display = "block";
         }
         else {
             e.style.display = "none";
         }
+        for(let i=3; i<e.childElementCount-1; i++){
+            notesText = e.children[i].innerText.toLowerCase();
+            if (notesText.includes(searchText)) {
+                e.style.display = "block";
+            }
+            else {
+                e.style.display = "none";
+            }
+        }
     });
 });
+
+function sideBar() {
+    let sideBar = document.getElementById("side-menu");
+    sideBar.classList.toggle( "open");
+}
+
+function changeBackground(src){
+    document.body.style.backgroundImage = `url(${src})`
+}
